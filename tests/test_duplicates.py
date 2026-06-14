@@ -92,10 +92,20 @@ def test_phash_near_duplicate(tmp_dir):
 
 @pytest.mark.skipif(not HAS_PILLOW, reason="Pillow required for pHash tests")
 def test_phash_different_images_not_near_dup(tmp_dir):
-    p1 = os.path.join(tmp_dir, "red.jpg")
-    p2 = os.path.join(tmp_dir, "blue.jpg")
-    _make_jpeg(p1, (255, 0, 0), size=(200, 200))
-    _make_jpeg(p2, (0, 0, 255), size=(200, 200))
+    p1 = os.path.join(tmp_dir, "img1.jpg")
+    p2 = os.path.join(tmp_dir, "img2.jpg")
+    
+    img1 = Image.new("RGB", (200, 200), color="white")
+    for x in range(100):
+        for y in range(100):
+            img1.putpixel((x, y), (0, 0, 0))
+    img1.save(p1, "JPEG")
+    
+    img2 = Image.new("RGB", (200, 200), color="white")
+    for x in range(100, 200):
+        for y in range(100, 200):
+            img2.putpixel((x, y), (0, 0, 0))
+    img2.save(p2, "JPEG")
 
     h1 = phash_image(p1)
     h2 = phash_image(p2)
