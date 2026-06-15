@@ -1,6 +1,6 @@
 # -*- mode: python ; coding: utf-8 -*-
 """
-PyInstaller spec for Photo by Face Organizer.
+PyInstaller spec for Photo Organizer.
 """
 import os
 import re
@@ -15,18 +15,20 @@ from PyInstaller.utils.hooks import (
 
 block_cipher = None
 
-# Correctly derive ROOT regardless of whether SPECPATH is a file or directory
+# ROOT is the project base directory
 _spec_path = Path(SPECPATH)
 if _spec_path.is_file():
     ROOT = str(_spec_path.parent.resolve())
 else:
     ROOT = str(_spec_path.resolve())
 
+APP_ROOT = os.path.join(ROOT, "app")
+
 # ----------------------------------------------------------------------------
-# Read version from src/version.py
+# Read version from app/src/version.py
 # ----------------------------------------------------------------------------
 def _read_version():
-    p = os.path.join(ROOT, "src", "version.py")
+    p = os.path.join(APP_ROOT, "src", "version.py")
     with open(p, "r", encoding="utf-8") as f:
         for line in f:
             if "__version__" in line:
@@ -85,20 +87,29 @@ hidden += [
 # ----------------------------------------------------------------------------
 # Bundle assets/, docs/ icons, license
 # ----------------------------------------------------------------------------
-def _bundle_dir(rel_dir: str):
-    abs_src = os.path.join(ROOT, rel_dir)
+def _bundle_app_dir(rel_dir: str):
+    """Bundle a directory from inside 'app/' into the same relative path in the bundle."""
+    abs_src = os.path.join(APP_ROOT, rel_dir)
     if not os.path.isdir(abs_src):
         return
     for root, _, files in os.walk(abs_src):
         for f in files:
             full = os.path.join(root, f)
-            target_dir = os.path.relpath(os.path.dirname(full), ROOT)
+            # We want 'app/assets/foo' to end up at 'assets/foo' in the bundle
+            target_dir = os.path.relpath(os.path.dirname(full), APP_ROOT)
             datas.append((full, target_dir))
 
-_bundle_dir("assets")
+_bundle_app_dir("assets")
 
-for fname in ("LICENSE", "README.md", "CHANGELOG.md"):
+# Metadata files from root
+for fname in ("LICENSE", "README.md", "NOTICE"):
     p = os.path.join(ROOT, fname)
+    if os.path.isfile(p):
+        datas.append((p, "."))
+
+# Metadata files from app/
+for fname in ("CHANGELOG.md", "CONTRIBUTING.md"):
+    p = os.path.join(APP_ROOT, fname)
     if os.path.isfile(p):
         datas.append((p, "."))
 
@@ -119,13 +130,13 @@ VSVersionInfo(
   kids=[
     StringFileInfo([
       StringTable(u'040904B0', [
-        StringStruct(u'CompanyName', u'Photo by Face Organizer Project'),
-        StringStruct(u'FileDescription', u'Photo by Face Organizer'),
+        StringStruct(u'CompanyName', u'Photo Organizer Project'),
+        StringStruct(u'FileDescription', u'Photo Organizer'),
         StringStruct(u'FileVersion', u'{VERSION}'),
-        StringStruct(u'InternalName', u'PhotoByFaceOrganizer'),
-        StringStruct(u'LegalCopyright', u'(c) 2026 Photo by Face Organizer Project. MIT License.'),
-        StringStruct(u'OriginalFilename', u'PhotoByFaceOrganizer.exe'),
-        StringStruct(u'ProductName', u'Photo by Face Organizer'),
+        StringStruct(u'InternalName', u'PhotoOrganizer'),
+        StringStruct(u'LegalCopyright', u'(c) 2026 Photo Organizer Project. MIT License.'),
+        StringStruct(u'OriginalFilename', u'PhotoOrganizer.exe'),
+        StringStruct(u'ProductName', u'Photo Organizer'),
         StringStruct(u'ProductVersion', u'{VERSION}'),
       ])
     ]),
@@ -146,7 +157,7 @@ VERSION_FILE = _write_version_resource()
 # ----------------------------------------------------------------------------
 a = Analysis(
     ["app_main.py"],
-    pathex=[ROOT],
+    pathex=[ROOT, APP_ROOT],
     binaries=binaries,
     datas=datas,
     hiddenimports=hidden,
@@ -165,7 +176,7 @@ a = Analysis(
 )
 pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
 
-ICON = os.path.join(ROOT, "assets", "app_icon.ico")
+ICON = os.path.join(APP_ROOT, "assets", "app_icon.ico")
 if not os.path.isfile(ICON):
     ICON = None
 
@@ -174,7 +185,7 @@ exe = EXE(
     a.scripts,
     [],
     exclude_binaries=True,
-    name="PhotoByFaceOrganizer",
+    name="PhotoOrganizer",
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -197,5 +208,5 @@ coll = COLLECT(
     strip=False,
     upx=False,
     upx_exclude=[],
-    name="PhotoByFaceOrganizer",
+    name="PhotoOrganizer",
 )

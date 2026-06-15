@@ -5,7 +5,7 @@ Hooks `sys.excepthook` (and `threading.excepthook`) so any uncaught
 exception from anywhere in the app:
   1. lands in `app.log` with a full traceback
   2. is also written verbatim to a per-incident file
-     `%LOCALAPPDATA%\\PhotoByFaceOrganizer\\crash_reports\\crash_<ts>.txt`
+     `%LOCALAPPDATA%\\PhotoOrganizer\\crash_reports\\crash_<ts>.txt`
   3. shows the user a friendly Tk dialog with one click to open the
      report and one click to copy it.
 
@@ -29,7 +29,7 @@ logger = logging.getLogger(__name__)
 
 def _crash_dir() -> str:
     appdata = os.environ.get("LOCALAPPDATA") or os.path.expanduser("~")
-    d = os.path.join(appdata, "PhotoByFaceOrganizer", "crash_reports")
+    d = os.path.join(appdata, "PhotoOrganizer", "crash_reports")
     os.makedirs(d, exist_ok=True)
     return d
 
@@ -38,7 +38,7 @@ def _format_report(exc_type, exc, tb) -> str:
     try:
         from .version import __app_name__, __version__
     except Exception:
-        __app_name__, __version__ = "Photo by Face Organizer", "?"
+        __app_name__, __version__ = "Photo Organizer", "?"
 
     lines = []
     lines.append("=" * 72)
@@ -88,7 +88,7 @@ def show_dialog(report_path: str, summary: str) -> None:
         try:
             from .version import __app_name__
         except Exception:
-            __app_name__ = "Photo by Face Organizer"
+            __app_name__ = "Photo Organizer"
 
         root = tk.Tk()
         root.title(f"{__app_name__} — Unexpected error")

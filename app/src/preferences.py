@@ -54,7 +54,7 @@ RECENT_LIMIT = 10
 
 def _prefs_dir() -> str:
     appdata = os.environ.get("LOCALAPPDATA") or os.path.expanduser("~")
-    d = os.path.join(appdata, "PhotoByFaceOrganizer")
+    d = os.path.join(appdata, "PhotoOrganizer")
     os.makedirs(d, exist_ok=True)
     return d
 

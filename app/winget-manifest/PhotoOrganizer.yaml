@@ -1,6 +1,6 @@
 # Version manifest — points winget at the .installer + .locale files.
 
-PackageIdentifier: DharuneshBoopathy.PhotoByFaceOrganizer
+PackageIdentifier: DharuneshBoopathy.PhotoOrganizer
 PackageVersion: 1.0.0
 DefaultLocale: en-US
 ManifestType: version

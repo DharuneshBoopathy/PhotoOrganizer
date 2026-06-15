@@ -3,7 +3,7 @@ Entry point for the bundled .exe.
 
 Responsibilities, in order:
   1. Parse minimal CLI flags (--version, --help, --reset-prefs, --safe-mode)
-  2. Set up %LOCALAPPDATA%\\PhotoByFaceOrganizer\\
+  2. Set up %LOCALAPPDATA%\\PhotoOrganizer\\
   3. Configure rotating log file + console handler
   4. Tell InsightFace to use a per-user model dir
   5. Install global crash handler
@@ -12,9 +12,9 @@ Responsibilities, in order:
 
 Run as:
     python app_main.py
-    PhotoByFaceOrganizer.exe
-    PhotoByFaceOrganizer.exe --version
-    PhotoByFaceOrganizer.exe --reset-prefs
+    PhotoOrganizer.exe
+    PhotoOrganizer.exe --version
+    PhotoOrganizer.exe --reset-prefs
 """
 from __future__ import annotations
 
@@ -42,7 +42,7 @@ def _resource_path(*parts: str) -> str:
 
 def _setup_app_data_dir() -> str:
     appdata = os.environ.get("LOCALAPPDATA") or os.path.expanduser("~")
-    d = os.path.join(appdata, "PhotoByFaceOrganizer")
+    d = os.path.join(appdata, "PhotoOrganizer")
     os.makedirs(d, exist_ok=True)
     return d
 
@@ -111,22 +111,22 @@ def _show_already_running_dialog() -> None:
         from tkinter import messagebox
         r = tk.Tk(); r.withdraw()
         messagebox.showinfo(
-            "Photo by Face Organizer",
-            "Photo by Face Organizer is already running.\n\n"
+            "Photo Organizer",
+            "Photo Organizer is already running.\n\n"
             "Look for it in your taskbar or system tray.",
         )
         r.destroy()
     except Exception:
         sys.stderr.write(
-            "Photo by Face Organizer is already running.\n"
+            "Photo Organizer is already running.\n"
         )
 
 
 # ---------- CLI -------------------------------------------------------------
 def _parse_args(argv) -> argparse.Namespace:
     p = argparse.ArgumentParser(
-        prog="PhotoByFaceOrganizer",
-        description="Photo by Face Organizer — local, offline photo organizer.",
+        prog="PhotoOrganizer",
+        description="Photo Organizer — local, offline photo organizer.",
         add_help=True,
     )
     p.add_argument("--version", action="store_true",
@@ -164,6 +164,13 @@ def main(argv=None) -> int:
     argv = list(argv if argv is not None else sys.argv[1:])
     args = _parse_args(argv)
 
+    if not _is_frozen():
+        root = os.path.dirname(os.path.abspath(__file__))
+        app_dir = os.path.join(root, "app")
+        if os.path.isdir(app_dir):
+            sys.path.insert(0, app_dir)
+        sys.path.insert(0, root)
+
     if args.version:
         _print_version()
         return 0
@@ -176,9 +183,6 @@ def main(argv=None) -> int:
     log.info("=" * 60)
 
     try:
-        if not _is_frozen():
-            sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-
         from src.version import __app_name__, __version__
         from src import error_handler
         error_handler.install()
@@ -231,7 +235,7 @@ def main(argv=None) -> int:
             from tkinter import messagebox
             r = tk.Tk(); r.withdraw()
             messagebox.showerror(
-                "Photo by Face Organizer — Fatal error",
+                "Photo Organizer — Fatal error",
                 "Sorry, something went wrong on startup.\n\n"
                 + traceback.format_exc()[-2000:]
                 + f"\n\nLog: {log_path}",

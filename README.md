@@ -2,16 +2,16 @@
 
 <img src="assets/app_icon_256.png" width="128" alt="App icon">
 
-# Photo by Face Organizer
+# Photo Organizer
 
 **Local-first, offline AI photo & video organizer for Windows.**
 Sort thousands of photos by date, location, and face — entirely on your machine.
 
-[![Release](https://img.shields.io/github/v/release/DharuneshBoopathy/PhotoByFaceOrganizer?include_prereleases&label=release)](https://github.com/DharuneshBoopathy/PhotoByFaceOrganizer/releases)
+[![Release](https://img.shields.io/github/v/release/DharuneshBoopathy/PhotoOrganizer?include_prereleases&label=release)](https://github.com/DharuneshBoopathy/PhotoOrganizer/releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Windows](https://img.shields.io/badge/platform-Windows%2010%2F11-0078D4.svg)](#install)
 [![Python 3.13](https://img.shields.io/badge/python-3.13-3776AB.svg)](#build-from-source)
-[![Build](https://github.com/DharuneshBoopathy/PhotoByFaceOrganizer/actions/workflows/build.yml/badge.svg)](https://github.com/DharuneshBoopathy/PhotoByFaceOrganizer/actions)
+[![Build](https://github.com/DharuneshBoopathy/PhotoOrganizer/actions/workflows/build.yml/badge.svg)](https://github.com/DharuneshBoopathy/PhotoOrganizer/actions)
 
 </div>
 
@@ -55,16 +55,16 @@ copy and every operation is logged so it can be rolled back.
 
 ### Option A — Installer (recommended)
 
-1. Go to **[Releases](https://github.com/DharuneshBoopathy/PhotoByFaceOrganizer/releases)**.
-2. Download `PhotoByFaceOrganizer-Setup-x.y.z.exe`.
+1. Go to **[Releases](https://github.com/DharuneshBoopathy/PhotoOrganizer/releases)**.
+2. Download `PhotoOrganizer-Setup-x.y.z.exe`.
 3. Run it. The installer is per-user by default — no admin password required.
 4. Launch from Start Menu. The first run shows a 3-step welcome wizard.
 
 ### Option B — Portable ZIP
 
-1. Download `PhotoByFaceOrganizer-x.y.z-portable.zip` from Releases.
+1. Download `PhotoOrganizer-x.y.z-portable.zip` from Releases.
 2. Unzip anywhere (USB stick is fine).
-3. Double-click `PhotoByFaceOrganizer.exe`.
+3. Double-click `PhotoOrganizer.exe`.
 
 No registry entries, no Start Menu shortcut. Move or delete the folder
 to "uninstall".
@@ -74,7 +74,7 @@ to "uninstall".
 Each release ships a `SHA256SUMS.txt`. Open PowerShell:
 
 ```powershell
-Get-FileHash .\PhotoByFaceOrganizer-Setup-1.0.0.exe -Algorithm SHA256
+Get-FileHash .\PhotoOrganizer-Setup-1.0.0.exe -Algorithm SHA256
 ```
 
 The output should match the line in `SHA256SUMS.txt`.
@@ -161,10 +161,10 @@ threat model + safety invariants.
 | `<output>\manifest.db` | Portable SQLite catalog of this output |
 | `<output>\report.html` | Top-level dashboard |
 | `<output>\Photos_By_…\` | Organized copies |
-| `%LOCALAPPDATA%\PhotoByFaceOrganizer\app.log` | Rolling log file (5 MB × 3) |
-| `%LOCALAPPDATA%\PhotoByFaceOrganizer\preferences.json` | UI settings, recent folders |
-| `%LOCALAPPDATA%\PhotoByFaceOrganizer\models\` | Cached InsightFace model (~280 MB) |
-| `%LOCALAPPDATA%\PhotoByFaceOrganizer\crash_reports\` | One file per crash (rare) |
+| `%LOCALAPPDATA%\PhotoOrganizer\app.log` | Rolling log file (5 MB × 3) |
+| `%LOCALAPPDATA%\PhotoOrganizer\preferences.json` | UI settings, recent folders |
+| `%LOCALAPPDATA%\PhotoOrganizer\models\` | Cached InsightFace model (~280 MB) |
+| `%LOCALAPPDATA%\PhotoOrganizer\crash_reports\` | One file per crash (rare) |
 
 The `manifest.db` is portable — copy the output folder to another
 machine and the catalog comes with it.
@@ -177,8 +177,8 @@ Prerequisites: **Python 3.13 64-bit** (Microsoft Store or python.org),
 **Inno Setup 6** (only for the installer step).
 
 ```bat
-git clone https://github.com/DharuneshBoopathy/PhotoByFaceOrganizer.git
-cd PhotoByFaceOrganizer
+git clone https://github.com/DharuneshBoopathy/PhotoOrganizer.git
+cd PhotoOrganizer
 py -3.13 -m pip install -r requirements.txt
 py -3.13 -m pip install pyinstaller
 build.bat installer
@@ -186,8 +186,8 @@ build.bat installer
 
 Outputs:
 
-* `dist\PhotoByFaceOrganizer\PhotoByFaceOrganizer.exe`
-* `installer\Output\PhotoByFaceOrganizer-Setup-1.0.0.exe`
+* `dist\PhotoOrganizer\PhotoOrganizer.exe`
+* `installer\Output\PhotoOrganizer-Setup-1.0.0.exe`
 
 See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the dev workflow,
 [`docs/RELEASE_CHECKLIST.md`](docs/RELEASE_CHECKLIST.md) for the
@@ -200,11 +200,11 @@ release procedure.
 The .exe accepts a few flags. Most users won't need them.
 
 ```bat
-PhotoByFaceOrganizer.exe                    REM normal launch
-PhotoByFaceOrganizer.exe --version
-PhotoByFaceOrganizer.exe --reset-prefs      REM erase saved settings
-PhotoByFaceOrganizer.exe --safe-mode        REM skip welcome wizard
-PhotoByFaceOrganizer.exe --cli organize SRC OUT  REM full CLI under the hood
+PhotoOrganizer.exe                    REM normal launch
+PhotoOrganizer.exe --version
+PhotoOrganizer.exe --reset-prefs      REM erase saved settings
+PhotoOrganizer.exe --safe-mode        REM skip welcome wizard
+PhotoOrganizer.exe --cli organize SRC OUT  REM full CLI under the hood
 ```
 
 Or directly:
@@ -229,7 +229,7 @@ python -m src.cli search "D:\Organized" --person Alice --date-from 2023-01-01
 * **v2.0** — Qt port for the labeling grid (Tkinter strains past ~200
   clusters).
 
-Tracked in [GitHub issues](https://github.com/DharuneshBoopathy/PhotoByFaceOrganizer/issues).
+Tracked in [GitHub issues](https://github.com/DharuneshBoopathy/PhotoOrganizer/issues).
 
 ---
 

@@ -1,22 +1,22 @@
 # Default-locale manifest for winget submission. See sibling .installer.yaml.
 
-PackageIdentifier: DharuneshBoopathy.PhotoByFaceOrganizer
+PackageIdentifier: DharuneshBoopathy.PhotoOrganizer
 PackageVersion: 1.0.0
 PackageLocale: en-US
-Publisher: Photo by Face Organizer Project
-PublisherUrl: https://github.com/DharuneshBoopathy/PhotoByFaceOrganizer
-PublisherSupportUrl: https://github.com/DharuneshBoopathy/PhotoByFaceOrganizer/issues
-PackageName: Photo by Face Organizer
-PackageUrl: https://github.com/DharuneshBoopathy/PhotoByFaceOrganizer
+Publisher: Photo Organizer Project
+PublisherUrl: https://github.com/DharuneshBoopathy/PhotoOrganizer
+PublisherSupportUrl: https://github.com/DharuneshBoopathy/PhotoOrganizer/issues
+PackageName: Photo Organizer
+PackageUrl: https://github.com/DharuneshBoopathy/PhotoOrganizer
 
 License: MIT
-LicenseUrl: https://github.com/DharuneshBoopathy/PhotoByFaceOrganizer/blob/main/LICENSE
-Copyright: Copyright (c) 2026 Photo by Face Organizer Project
-CopyrightUrl: https://github.com/DharuneshBoopathy/PhotoByFaceOrganizer/blob/main/LICENSE
+LicenseUrl: https://github.com/DharuneshBoopathy/PhotoOrganizer/blob/main/LICENSE
+Copyright: Copyright (c) 2026 Photo Organizer Project
+CopyrightUrl: https://github.com/DharuneshBoopathy/PhotoOrganizer/blob/main/LICENSE
 
 ShortDescription: Local-first, offline AI photo organizer for Windows.
 Description: |
-  Photo by Face Organizer sorts your photo and video library by date,
+  Photo Organizer sorts your photo and video library by date,
   location, and faces — entirely on your own computer. No cloud
   uploads, no telemetry, no account required.
 

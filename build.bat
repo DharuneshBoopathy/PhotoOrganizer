@@ -1,6 +1,6 @@
 @echo off
 REM ====================================================================
-REM Build Photo by Face Organizer (.exe + installer)
+REM Build Photo Organizer (.exe + installer)
 REM
 REM Prerequisites (one-time):
 REM   1. Python 3.13 64-bit installed (we pin to 3.13 for stable wheels;
@@ -24,7 +24,7 @@ cd /d "%~dp0"
 set "PY=py -3.13"
 
 echo.
-echo === Photo by Face Organizer build ===
+echo === Photo Organizer build ===
 echo.
 
 REM --- 0. Sanity-check the interpreter ---
@@ -42,9 +42,9 @@ if errorlevel 1 (
 )
 
 REM --- 1. Ensure assets/app_icon.ico exists ---
-if not exist "assets\app_icon.ico" (
+if not exist "app\assets\app_icon.ico" (
     echo [build] Generating default app icon...
-    %PY% tools\make_app_icon.py
+    %PY% app\tools\make_app_icon.py
     if errorlevel 1 (
         echo [build] WARN: icon generation failed; continuing without icon
     )
@@ -58,7 +58,7 @@ REM --- 3. PyInstaller ---
 echo.
 echo [build] Running PyInstaller...
 echo.
-%PY% -m PyInstaller PhotoByFaceOrganizer.spec --clean --noconfirm
+%PY% -m PyInstaller PhotoOrganizer.spec --clean --noconfirm
 if errorlevel 1 (
     echo [build] FAILED: PyInstaller errored out.
     exit /b 1
@@ -67,11 +67,11 @@ if errorlevel 1 (
 REM --- 4. Smoke-test the .exe ---
 echo.
 echo [build] Smoke-testing executable...
-if not exist "dist\PhotoByFaceOrganizer\PhotoByFaceOrganizer.exe" (
+if not exist "dist\PhotoOrganizer\PhotoOrganizer.exe" (
     echo [build] FAILED: dist exe missing.
     exit /b 1
 )
-echo [build] OK: dist\PhotoByFaceOrganizer\PhotoByFaceOrganizer.exe
+echo [build] OK: dist\PhotoOrganizer\PhotoOrganizer.exe
 
 REM --- 5. Optional: build installer ---
 if /i "%1"=="installer" (
@@ -83,7 +83,7 @@ if /i "%1"=="installer" (
         echo [build] WARN: ISCC.exe not found. Install Inno Setup 6 first.
         exit /b 0
     )
-    "!ISCC!" installer.iss
+    "!ISCC!" app\installer.iss
     if errorlevel 1 (
         echo [build] FAILED: Inno Setup errored out.
         exit /b 1

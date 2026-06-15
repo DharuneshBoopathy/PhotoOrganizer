@@ -1,5 +1,5 @@
 """
-Pack `dist/PhotoByFaceOrganizer/` into a portable ZIP.
+Pack `dist/PhotoOrganizer/` into a portable ZIP.
 
 Why offer a portable build alongside the installer?
   - Users on locked-down corporate machines often can't run an installer
@@ -7,7 +7,7 @@ Why offer a portable build alongside the installer?
   - Same bytes as the installed copy, but no Start Menu / registry entries
 
 Output:
-    dist/portable/PhotoByFaceOrganizer-<version>-portable.zip
+    dist/portable/PhotoOrganizer-<version>-portable.zip
 
 Run:
     py -3.13 tools/make_portable_zip.py
@@ -29,7 +29,7 @@ def read_version(project_root: Path) -> str:
 
 def main() -> int:
     project = Path(__file__).resolve().parent.parent
-    src_dir = project / "dist" / "PhotoByFaceOrganizer"
+    src_dir = project / "dist" / "PhotoOrganizer"
     out_dir = project / "dist" / "portable"
 
     if not src_dir.is_dir():
@@ -39,20 +39,20 @@ def main() -> int:
 
     version = read_version(project)
     out_dir.mkdir(parents=True, exist_ok=True)
-    zip_path = out_dir / f"PhotoByFaceOrganizer-{version}-portable.zip"
+    zip_path = out_dir / f"PhotoOrganizer-{version}-portable.zip"
     if zip_path.exists():
         zip_path.unlink()
 
     # Drop a tiny README into the portable zip explaining the contract
     portable_readme = (
-        "Photo by Face Organizer — Portable build\n"
+        "Photo Organizer — Portable build\n"
         f"Version {version}\n\n"
         "How to use:\n"
         "  1. Unzip this archive anywhere (USB stick is fine).\n"
-        "  2. Double-click PhotoByFaceOrganizer.exe.\n\n"
+        "  2. Double-click PhotoOrganizer.exe.\n\n"
         "Where data goes:\n"
         "  Logs / preferences / face-model cache live under\n"
-        "  %LOCALAPPDATA%\\PhotoByFaceOrganizer (per Windows user).\n"
+        "  %LOCALAPPDATA%\\PhotoOrganizer (per Windows user).\n"
         "  Delete that folder to reset the app fully.\n\n"
         "No registry entries, no Start Menu shortcut. Move or delete this\n"
         "folder to uninstall.\n"
@@ -63,7 +63,7 @@ def main() -> int:
     total_bytes = 0
     with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED, compresslevel=6) as zf:
         # Top-level directory inside the zip = product name + version
-        root_in_zip = f"PhotoByFaceOrganizer-{version}/"
+        root_in_zip = f"PhotoOrganizer-{version}/"
         zf.writestr(root_in_zip + "PORTABLE-README.txt", portable_readme)
 
         for path in src_dir.rglob("*"):

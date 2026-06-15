@@ -13,11 +13,14 @@ REM    run.bat label-faces "D:\Organized"
 REM    run.bat rollback "D:\Organized" 20240101_120000_abc123
 REM ============================================================
 
-if not exist ".venv\Scripts\activate.bat" (
+if not exist "app\.venv\Scripts\activate.bat" (
     echo [ERROR] Virtual environment not found. Run setup.bat first.
     pause
     exit /b 1
 )
 
-call .venv\Scripts\activate.bat
+setlocal
+set "PYTHONPATH=%PYTHONPATH%;%~dp0app"
+call app\.venv\Scripts\activate.bat
 python -m src.cli %*
+endlocal

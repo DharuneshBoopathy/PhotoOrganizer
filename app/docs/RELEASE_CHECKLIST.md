@@ -34,7 +34,7 @@ section in order. Don't skip ahead — these have caught me before.
 - [ ] `py -3.13 app_main.py --version` prints the new version
 - [ ] Run the GUI from source: `py -3.13 app_main.py`
       * Welcome wizard appears (only if you cleared
-        `%LOCALAPPDATA%\PhotoByFaceOrganizer\preferences.json`)
+        `%LOCALAPPDATA%\PhotoOrganizer\preferences.json`)
       * About dialog shows new version
       * Settings open / save / round-trip
       * Pipeline starts on a 100-photo test corpus and finishes
@@ -47,11 +47,11 @@ section in order. Don't skip ahead — these have caught me before.
 - [ ] `rmdir /s /q build dist` (full clean)
 - [ ] `build.bat installer`
 - [ ] Verify outputs:
-      * `dist\PhotoByFaceOrganizer\PhotoByFaceOrganizer.exe`
-      * `installer\Output\PhotoByFaceOrganizer-Setup-x.y.z.exe`
-- [ ] Right-click `PhotoByFaceOrganizer.exe` → Properties → Details:
+      * `dist\PhotoOrganizer\PhotoOrganizer.exe`
+      * `installer\Output\PhotoOrganizer-Setup-x.y.z.exe`
+- [ ] Right-click `PhotoOrganizer.exe` → Properties → Details:
       * File version reads `x.y.z`
-      * Product name reads "Photo by Face Organizer"
+      * Product name reads "Photo Organizer"
 - [ ] `py -3.13 tools\make_portable_zip.py`
 - [ ] `py -3.13 tools\make_checksums.py`
 - [ ] `SHA256SUMS.txt` lists exactly 3 files (`.exe`, `Setup.exe`, `.zip`).
@@ -69,7 +69,7 @@ This is the most important step.
       of duplicates and a couple of GPS-tagged photos) and run.
 - [ ] After completion: `report.html` opens in browser, folder icons
       appear in `Photos_By_Face\`, no crash dialog.
-- [ ] Uninstall via Apps & Features. Confirm `%LOCALAPPDATA%\PhotoByFaceOrganizer\`
+- [ ] Uninstall via Apps & Features. Confirm `%LOCALAPPDATA%\PhotoOrganizer\`
       is preserved (we keep models and prefs intentionally).
 
 ---
@@ -84,7 +84,7 @@ This is the most important step.
       `buffalo_l` from `huggingface.co` (InsightFace's CDN). After
       that, no further calls.
 - [ ] Optional: pre-place the model under
-      `%LOCALAPPDATA%\PhotoByFaceOrganizer\models\models\buffalo_l\`
+      `%LOCALAPPDATA%\PhotoOrganizer\models\models\buffalo_l\`
       and verify the run goes fully offline.
 
 ---
@@ -94,15 +94,15 @@ This is the most important step.
 ```bat
 git add -A
 git commit -m "release: v1.x.y"
-git tag -a v1.x.y -m "Photo by Face Organizer 1.x.y"
+git tag -a v1.x.y -m "Photo Organizer 1.x.y"
 git push origin main
 git push origin v1.x.y
 ```
 
 GitHub Actions will:
 1. Build on the tag.
-2. Attach `PhotoByFaceOrganizer-Setup-1.x.y.exe`,
-   `PhotoByFaceOrganizer-1.x.y-portable.zip`, and `SHA256SUMS.txt`
+2. Attach `PhotoOrganizer-Setup-1.x.y.exe`,
+   `PhotoOrganizer-1.x.y-portable.zip`, and `SHA256SUMS.txt`
    to the release page.
 
 ---
@@ -110,9 +110,9 @@ GitHub Actions will:
 ## 7. Polish the release page
 
 - [ ] Open
-      [Releases](https://github.com/DharuneshBoopathy/PhotoByFaceOrganizer/releases),
+      [Releases](https://github.com/DharuneshBoopathy/PhotoOrganizer/releases),
       edit the auto-created `v1.x.y` draft.
-- [ ] Title: `Photo by Face Organizer 1.x.y`
+- [ ] Title: `Photo Organizer 1.x.y`
 - [ ] Body: paste the matching CHANGELOG section.
 - [ ] If this is the latest stable, check **Set as the latest release**.
 - [ ] Hit Publish.

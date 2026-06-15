@@ -19,9 +19,9 @@ First public release as a desktop application.
 - **About dialog** — version, license, credits, links to docs and bug
   tracker.
 - **User preferences** persisted to
-  `%LOCALAPPDATA%\PhotoByFaceOrganizer\preferences.json`.
+  `%LOCALAPPDATA%\PhotoOrganizer\preferences.json`.
 - **Crash handler** — global `sys.excepthook` writes a per-incident report
-  to `%LOCALAPPDATA%\PhotoByFaceOrganizer\crash_reports\` and shows a
+  to `%LOCALAPPDATA%\PhotoOrganizer\crash_reports\` and shows a
   user-friendly Tk dialog with copy / open-folder actions.
 - **Single-instance lock** — second launch focuses an info dialog instead
   of opening a duplicate window.
@@ -33,7 +33,7 @@ First public release as a desktop application.
   bundled assets, explicit hidden-import list for all `src.*` modules,
   exclude list for `matplotlib`/`pandas`/`torch` to slim the bundle.
 - **Inno Setup installer** with auto-uninstall on upgrade, license page,
-  per-user default, registry entry under `HKCU\Software\PhotoByFaceOrganizer`,
+  per-user default, registry entry under `HKCU\Software\PhotoOrganizer`,
   preserved app data on uninstall.
 - **Portable ZIP build** via `tools/make_portable_zip.py` — same bytes,
   no install.
@@ -83,5 +83,5 @@ First public release as a desktop application.
 - Tkinter UI is intentionally simple — Label People grid feels cramped
   past ~200 clusters. Qt port tracked for v2.0.
 
-[Unreleased]: https://github.com/DharuneshBoopathy/PhotoByFaceOrganizer/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/DharuneshBoopathy/PhotoByFaceOrganizer/releases/tag/v1.0.0
+[Unreleased]: https://github.com/DharuneshBoopathy/PhotoOrganizer/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/DharuneshBoopathy/PhotoOrganizer/releases/tag/v1.0.0

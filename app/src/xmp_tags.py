@@ -26,7 +26,7 @@ logger = logging.getLogger(__name__)
 
 
 XMP_TEMPLATE = """<?xml version="1.0" encoding="UTF-8"?>
-<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="PhotoByFaceOrganizer">
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="PhotoOrganizer">
  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about=""
     xmlns:dc="http://purl.org/dc/elements/1.1/"

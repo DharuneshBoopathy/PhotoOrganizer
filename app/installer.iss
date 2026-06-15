@@ -1,29 +1,29 @@
 ; ====================================================================
-;  Photo by Face Organizer — Inno Setup script
+;  Photo Organizer — Inno Setup script
 ;
 ;  Build with:
 ;     "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" installer.iss
 ;  or via build.bat installer
 ;
 ;  Output:
-;     installer\Output\PhotoByFaceOrganizer-Setup.exe
+;     installer\Output\PhotoOrganizer-Setup.exe
 ;
 ;  Design notes:
 ;    * PER-USER install by default (no admin rights). Users can opt
 ;      to install for all users via the privilege override dialog.
 ;    * Dist contents are folder-mode (~425 MB) — installs into
-;      {autopf}\PhotoByFaceOrganizer or {localappdata}\Programs\...
+;      {autopf}\PhotoOrganizer or {localappdata}\Programs\...
 ;    * App data (logs, prefs, models cache) lives under %LOCALAPPDATA%
 ;      and is preserved across uninstall (so reinstall keeps state).
 ;    * `cache/` is the only folder we auto-clean on uninstall.
 ; ====================================================================
 
-#define AppName        "Photo by Face Organizer"
-#define AppShort       "PhotoByFaceOrganizer"
-#define AppPublisher   "Photo by Face Organizer Project"
-#define AppExeName     "PhotoByFaceOrganizer.exe"
+#define AppName        "Photo Organizer"
+#define AppShort       "PhotoOrganizer"
+#define AppPublisher   "Photo Organizer Project"
+#define AppExeName     "PhotoOrganizer.exe"
 #define AppId          "{{D9F8E1F0-3B6E-4C2C-9B36-7A9B2F7C1D4A}"
-#define AppHomepage    "https://github.com/DharuneshBoopathy/PhotoByFaceOrganizer"
+#define AppHomepage    "https://github.com/DharuneshBoopathy/PhotoOrganizer"
 
 ; Version is read from src\version.py at compile time
 #define FileHandle = FileOpen("src\version.py")
@@ -76,7 +76,7 @@ ArchitecturesAllowed=x64
 
 ; --- Output ---
 OutputDir=installer\Output
-OutputBaseFilename=PhotoByFaceOrganizer-Setup-{#AppVersion}
+OutputBaseFilename=PhotoOrganizer-Setup-{#AppVersion}
 SetupIconFile=assets\app_icon.ico
 WizardStyle=modern
 WizardSizePercent=120
@@ -108,7 +108,7 @@ Name: "quicklaunchicon"; Description: "Create a &Quick Launch shortcut"; \
     GroupDescription: "Additional shortcuts:"; Flags: unchecked; OnlyBelowVersion: 6.1
 
 [Files]
-Source: "dist\PhotoByFaceOrganizer\*"; \
+Source: "dist\PhotoOrganizer\*"; \
     DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs solidbreak
 Source: "README.md";    DestDir: "{app}"; Flags: ignoreversion isreadme
 Source: "LICENSE";      DestDir: "{app}"; Flags: ignoreversion
@@ -130,7 +130,7 @@ Filename: "{app}\{#AppExeName}"; Description: "Launch {#AppName}"; \
 [UninstallDelete]
 ; Only the cache. Logs, prefs, and the models cache are preserved
 ; so reinstalls don't have to re-download buffalo_l (~280 MB).
-Type: filesandordirs; Name: "{localappdata}\PhotoByFaceOrganizer\cache"
+Type: filesandordirs; Name: "{localappdata}\PhotoOrganizer\cache"
 
 [Registry]
 ; Friendly name in Add/Remove Programs ("Apps & Features")

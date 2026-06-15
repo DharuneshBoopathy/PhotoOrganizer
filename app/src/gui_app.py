@@ -1,5 +1,5 @@
 """
-Photo by Face Organizer — main desktop window.
+Photo Organizer — main desktop window.
 
 Production layout:
 
@@ -15,7 +15,7 @@ Production layout:
 
 Pipeline runs on a worker thread; events flow back through a Queue.
 Preferences (recent folders, toggles, threshold, model dir) are persisted
-to %LOCALAPPDATA%\\PhotoByFaceOrganizer\\preferences.json.
+to %LOCALAPPDATA%\\PhotoOrganizer\\preferences.json.
 """
 from __future__ import annotations
 
@@ -567,7 +567,7 @@ class OrganizerApp(tk.Tk):
 
     def _open_log_file(self):
         appdata = os.environ.get("LOCALAPPDATA") or os.path.expanduser("~")
-        path = os.path.join(appdata, "PhotoByFaceOrganizer", "app.log")
+        path = os.path.join(appdata, "PhotoOrganizer", "app.log")
         if os.path.isfile(path):
             try:
                 os.startfile(path)  # type: ignore[attr-defined]
@@ -578,7 +578,7 @@ class OrganizerApp(tk.Tk):
 
     def _open_crash_dir(self):
         appdata = os.environ.get("LOCALAPPDATA") or os.path.expanduser("~")
-        d = os.path.join(appdata, "PhotoByFaceOrganizer", "crash_reports")
+        d = os.path.join(appdata, "PhotoOrganizer", "crash_reports")
         if os.path.isdir(d):
             try:
                 os.startfile(d)  # type: ignore[attr-defined]

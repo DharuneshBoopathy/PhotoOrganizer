@@ -1,5 +1,5 @@
 """
-Command-line interface for the Photo by Face Organizer.
+Command-line interface for the Photo Organizer.
 
 Usage:  python -m src.cli <command> [options]
 
@@ -311,7 +311,7 @@ def cmd_gui(args):
 def main():
     parser = argparse.ArgumentParser(
         prog="photo-organizer",
-        description="Photo by Face Organizer — local-first, offline, archival-grade",
+        description="Photo Organizer — local-first, offline, archival-grade",
     )
     sub = parser.add_subparsers(dest="command", required=True)
 

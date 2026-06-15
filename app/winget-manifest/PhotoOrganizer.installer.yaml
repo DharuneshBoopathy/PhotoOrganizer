@@ -7,12 +7,12 @@
 #   3. Bump `PackageVersion` here AND in the matching defaultLocale +
 #      version manifests (see below).
 #   4. Open a PR against microsoft/winget-pkgs at:
-#      manifests/d/DharuneshBoopathy/PhotoByFaceOrganizer/<version>/
+#      manifests/d/DharuneshBoopathy/PhotoOrganizer/<version>/
 #
 # Once accepted, users can install with:
-#   winget install DharuneshBoopathy.PhotoByFaceOrganizer
+#   winget install DharuneshBoopathy.PhotoOrganizer
 
-PackageIdentifier: DharuneshBoopathy.PhotoByFaceOrganizer
+PackageIdentifier: DharuneshBoopathy.PhotoOrganizer
 PackageVersion: 1.0.0
 InstallerType: inno
 Scope: user
@@ -20,7 +20,7 @@ Architecture: x64
 InstallerLocale: en-US
 ReleaseDate: 2026-04-28
 
-InstallerUrl: https://github.com/DharuneshBoopathy/PhotoByFaceOrganizer/releases/download/v1.0.0/PhotoByFaceOrganizer-Setup-1.0.0.exe
+InstallerUrl: https://github.com/DharuneshBoopathy/PhotoOrganizer/releases/download/v1.0.0/PhotoOrganizer-Setup-1.0.0.exe
 InstallerSha256: 0000000000000000000000000000000000000000000000000000000000000000  # ← fill in from SHA256SUMS.txt
 
 InstallerSwitches:

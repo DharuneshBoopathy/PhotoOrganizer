@@ -17,7 +17,7 @@ from pathlib import Path
 
 
 CANDIDATES = [
-    "dist/PhotoByFaceOrganizer/PhotoByFaceOrganizer.exe",
+    "dist/PhotoOrganizer/PhotoOrganizer.exe",
     "installer/Output",   # all setup .exe files in here
     "dist/portable",      # portable zip output (if make_portable_zip ran)
 ]

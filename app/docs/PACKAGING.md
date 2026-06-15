@@ -1,6 +1,6 @@
 # Packaging guide
 
-How `Photo by Face Organizer` becomes a `.exe` + installer + portable
+How `Photo Organizer` becomes a `.exe` + installer + portable
 zip, and how to keep that pipeline working.
 
 ---
@@ -16,10 +16,10 @@ py -3.13 tools\make_checksums.py
 Output:
 
 ```
-dist\PhotoByFaceOrganizer\PhotoByFaceOrganizer.exe          (~36 MB launcher)
-dist\PhotoByFaceOrganizer\_internal\                        (~425 MB deps)
-dist\portable\PhotoByFaceOrganizer-1.0.0-portable.zip       (~150 MB compressed)
-installer\Output\PhotoByFaceOrganizer-Setup-1.0.0.exe       (~150 MB)
+dist\PhotoOrganizer\PhotoOrganizer.exe          (~36 MB launcher)
+dist\PhotoOrganizer\_internal\                        (~425 MB deps)
+dist\portable\PhotoOrganizer-1.0.0-portable.zip       (~150 MB compressed)
+installer\Output\PhotoOrganizer-Setup-1.0.0.exe       (~150 MB)
 SHA256SUMS.txt
 ```
 
@@ -73,14 +73,14 @@ add 200+ MB the runtime never uses.
 
 ### Models
 **Not bundled.** InsightFace's `buffalo_l` (~280 MB) downloads on
-first launch into `%LOCALAPPDATA%\PhotoByFaceOrganizer\models\`. Why:
+first launch into `%LOCALAPPDATA%\PhotoOrganizer\models\`. Why:
 1. Releases are leaner (~150 MB vs ~430 MB).
 2. The model can update independently.
 3. Air-gapped users can pre-place the model and launch with `--model-dir`.
 
 If you want a fully offline installer, copy `buffalo_l/` into
 `assets\insightface_models\` and add a couple of lines to the spec —
-see the comments in `PhotoByFaceOrganizer.spec`.
+see the comments in `PhotoOrganizer.spec`.
 
 ---
 
@@ -97,11 +97,11 @@ If a hidden import goes missing after you add a new module, check the
 warn file:
 
 ```bat
-notepad build\PhotoByFaceOrganizer\warn-PhotoByFaceOrganizer.txt
+notepad build\PhotoOrganizer\warn-PhotoOrganizer.txt
 ```
 
 Look for `missing module named src.X` — fix by adding `src.X` to the
-`hidden` list in `PhotoByFaceOrganizer.spec`.
+`hidden` list in `PhotoOrganizer.spec`.
 
 ---
 
@@ -121,7 +121,7 @@ The skeleton is in place. To enable:
    "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" /Ssigntool="signtool.exe sign /f mycert.pfx /p PASSWORD $f" installer.iss
    ```
 
-Sign the `.exe` inside `dist\PhotoByFaceOrganizer\` **before** running
+Sign the `.exe` inside `dist\PhotoOrganizer\` **before** running
 the installer step, and sign the `Setup.exe` after. SmartScreen
 reputation begins accruing once the first signed binary is publicly
 distributed.
@@ -134,11 +134,11 @@ A draft winget manifest is in `winget-manifest/`. To publish:
 
 1. Cut a GitHub release with the `.exe` + `Setup.exe`.
 2. Compute the SHA-256 of the Setup .exe.
-3. Update `winget-manifest/PhotoByFaceOrganizer.installer.yaml` with
+3. Update `winget-manifest/PhotoOrganizer.installer.yaml` with
    that hash + the GitHub release URL.
 4. Open a PR against
    [microsoft/winget-pkgs](https://github.com/microsoft/winget-pkgs)
-   under `manifests/d/DharuneshBoopathy/PhotoByFaceOrganizer/<version>/`.
+   under `manifests/d/DharuneshBoopathy/PhotoOrganizer/<version>/`.
 
 ---
 
@@ -160,7 +160,7 @@ The Python launcher is misconfigured. Use `py -3.13 -m PyInstaller`
 explicitly, or fix PATH so `py.exe` is reachable.
 
 ### App launches then closes silently
-Check `%LOCALAPPDATA%\PhotoByFaceOrganizer\app.log`. The crash handler
+Check `%LOCALAPPDATA%\PhotoOrganizer\app.log`. The crash handler
 also writes a per-incident report to `crash_reports\`.
 
 ### Inno Setup compile fails on `LicenseFile=LICENSE`

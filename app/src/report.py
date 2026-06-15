@@ -154,7 +154,7 @@ def build_report(db: Database, output_dir: str) -> str:
     {''.join(cards)}
   </div>
 </main>
-<footer>Photo by Face Organizer · all data stays on this machine</footer>
+<footer>Photo Organizer · all data stays on this machine</footer>
 </body></html>
 """
 

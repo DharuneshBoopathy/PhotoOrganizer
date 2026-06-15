@@ -9,8 +9,8 @@ direct.
 ## Development setup
 
 ```bat
-git clone https://github.com/DharuneshBoopathy/PhotoByFaceOrganizer.git
-cd PhotoByFaceOrganizer
+git clone https://github.com/DharuneshBoopathy/PhotoOrganizer.git
+cd PhotoOrganizer
 
 REM Use Python 3.13 (the launcher pins it)
 py -3.13 -m venv .venv
@@ -33,8 +33,8 @@ python -m src.cli --help
 ## How to build the .exe
 
 ```bat
-build.bat            REM produces dist\PhotoByFaceOrganizer\
-build.bat installer  REM also produces installer\Output\PhotoByFaceOrganizer-Setup-*.exe
+build.bat            REM produces dist\PhotoOrganizer\
+build.bat installer  REM also produces installer\Output\PhotoOrganizer-Setup-*.exe
 ```
 
 For a portable ZIP and SHA-256 checksums:
@@ -105,13 +105,13 @@ before merging.
 
 ## Reporting bugs
 
-Open an issue at the [bug tracker](https://github.com/DharuneshBoopathy/PhotoByFaceOrganizer/issues)
+Open an issue at the [bug tracker](https://github.com/DharuneshBoopathy/PhotoOrganizer/issues)
 and include:
 
 * The version (Help → About inside the app)
 * What you expected to happen
 * What actually happened
-* The contents of `%LOCALAPPDATA%\PhotoByFaceOrganizer\app.log` (or a
+* The contents of `%LOCALAPPDATA%\PhotoOrganizer\app.log` (or a
   recent file from `crash_reports\` if the app crashed)
 
 Crash reports never contain photo paths beyond what was logged at the

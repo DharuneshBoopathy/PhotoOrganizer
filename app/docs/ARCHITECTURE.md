@@ -1,4 +1,4 @@
-# Architecture Review — Photo by Face Organizer
+# Architecture Review — Photo Organizer
 
 A local-first, offline desktop application for Windows that scans a user's
 photo/video library and reorganizes it into a curated, deduplicated,

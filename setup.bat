@@ -19,7 +19,7 @@ if errorlevel 1 (
 )
 
 echo [1/4] Creating virtual environment...
-python -m venv .venv
+python -m venv app\.venv
 if errorlevel 1 (
     echo [ERROR] Failed to create virtual environment.
     pause
@@ -27,13 +27,13 @@ if errorlevel 1 (
 )
 
 echo [2/4] Activating virtual environment...
-call .venv\Scripts\activate.bat
+call app\.venv\Scripts\activate.bat
 
 echo [3/4] Upgrading pip...
 python -m pip install --upgrade pip --quiet
 
 echo [4/4] Installing dependencies...
-pip install -r requirements.txt
+pip install -r app\requirements.txt
 if errorlevel 1 (
     echo.
     echo [WARNING] Some packages failed. Trying without InsightFace...

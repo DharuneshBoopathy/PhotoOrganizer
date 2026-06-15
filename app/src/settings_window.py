@@ -120,7 +120,7 @@ class SettingsWindow(tk.Toplevel):
         ttk.Label(f, text="App data folder:").pack(anchor="w")
         appdata = os.path.join(
             os.environ.get("LOCALAPPDATA") or os.path.expanduser("~"),
-            "PhotoByFaceOrganizer")
+            "PhotoOrganizer")
         ttk.Label(f, text=appdata, foreground="#666").pack(anchor="w")
         ttk.Button(f, text="Open app data folder",
                     command=lambda: self._open(appdata)).pack(anchor="w", pady=4)

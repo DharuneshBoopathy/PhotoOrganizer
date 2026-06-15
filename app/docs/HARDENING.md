@@ -1,6 +1,6 @@
 # Production Hardening Checklist
 
-Things to check before shipping `PhotoByFaceOrganizer-Setup.exe` to a
+Things to check before shipping `PhotoOrganizer-Setup.exe` to a
 non-technical user. Items grouped by risk; most-important first.
 
 ---
@@ -34,7 +34,7 @@ non-technical user. Items grouped by risk; most-important first.
 - [ ] Run with the network adapter disabled — pipeline succeeds.
 - [ ] Confirm `INSIGHTFACE_HOME` points inside `%LOCALAPPDATA%`, not the
   user's roaming profile (so models don't sync to OneDrive/AD).
-- [ ] No file under `%APPDATA%\Local\PhotoByFaceOrganizer\` contains
+- [ ] No file under `%APPDATA%\Local\PhotoOrganizer\` contains
   user content (faces, paths) **outside** the explicit DB. The `app.log`
   should contain operational events only, not photo paths verbatim where
   avoidable.
@@ -80,7 +80,7 @@ non-technical user. Items grouped by risk; most-important first.
   Windows SmartScreen will block users on first launch.
 - [ ] Installer is signed too. SmartScreen reputation grows with signed
   downloads — start now, not at v2.
-- [ ] Run `dist/.../PhotoByFaceOrganizer.exe` on a clean Windows VM with
+- [ ] Run `dist/.../PhotoOrganizer.exe` on a clean Windows VM with
   no Python installed. No "VCRUNTIME140.dll missing" pop-ups.
 - [ ] Antivirus quick scan on the installed folder. Some heuristic AV
   flags PyInstaller bundles — submit a false-positive sample to MS

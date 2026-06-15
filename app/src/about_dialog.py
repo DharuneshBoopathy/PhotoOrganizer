@@ -114,7 +114,7 @@ class AboutDialog(tk.Toplevel):
     @staticmethod
     def _open_log_folder():
         appdata = os.environ.get("LOCALAPPDATA") or os.path.expanduser("~")
-        d = os.path.join(appdata, "PhotoByFaceOrganizer")
+        d = os.path.join(appdata, "PhotoOrganizer")
         if os.path.isdir(d):
             try:
                 os.startfile(d)  # type: ignore[attr-defined]
